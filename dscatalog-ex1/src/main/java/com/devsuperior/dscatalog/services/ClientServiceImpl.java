@@ -14,16 +14,16 @@ import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 @Service
 public class ClientServiceImpl implements ClientService {
 
-    private ClientRepository clientRepository;
+    private ClientRepository repository;
 
     public ClientServiceImpl(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
+        repository = clientRepository;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ClientDTO> findAll() {
-        List<Client> list = this.clientRepository.findAll();
+        List<Client> list = repository.findAll();
         return list
                 .stream()
                 .map(x -> new ClientDTO(x))
@@ -33,15 +33,17 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id) {
-        Optional<Client> obj = this.clientRepository.findById(id);
-        Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        Optional<Client> obj = repository.findById(id);
+        Client entity = obj
+            .orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
         return new ClientDTO(entity);
     }
 
     @Override
     public ClientDTO insert(ClientDTO dto) {
-        // TODO Auto-generated method stub
-        return null;
+        Client client = new Client(dto);
+        client = repository.save(client);
+        return new ClientDTO(client);
     }
 
     @Override
