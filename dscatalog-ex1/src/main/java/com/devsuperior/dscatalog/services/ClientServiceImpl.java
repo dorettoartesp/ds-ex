@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,6 +68,18 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
+    
+    @Override
+    public void delete(Long id) {
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(e.getMessage());
+        } catch (DataIntegrityViolationException e) {
+            throw new ResourceNotFoundException(e.getMessage());
+        }
+    }
+    
     private void copyDtoToEntity(ClientDTO dto, Client entity) {
         entity.setBirthDate(dto.getBirthDate());
         entity.setChildren(dto.getChildren());
@@ -73,11 +87,4 @@ public class ClientServiceImpl implements ClientService {
         entity.setIncome(dto.getIncome());
         entity.setName(dto.getName());
     }
-
-    @Override
-    public void delete(Long id) {
-        // TODO Auto-generated method stub
-        
-    }
-    
 }
