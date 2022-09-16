@@ -1,11 +1,12 @@
 package com.devsuperior.dscatalog.services;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.devsuperior.dscatalog.dtos.ClientDTO;
 
 public interface ClientService {
-    public List<ClientDTO> findAll();
+    public Page<ClientDTO> findAllPaged(PageRequest pageRequest);
     public ClientDTO findById(Long id);
     public ClientDTO insert(ClientDTO dto);
     public ClientDTO update(Long id, ClientDTO dto);

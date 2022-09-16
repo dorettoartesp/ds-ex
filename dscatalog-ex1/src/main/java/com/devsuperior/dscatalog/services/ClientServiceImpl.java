@@ -8,6 +8,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,15 +29,15 @@ public class ClientServiceImpl implements ClientService {
         repository = clientRepository;
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<ClientDTO> findAll() {
-        List<Client> list = repository.findAll();
-        return list
-                .stream()
-                .map(x -> new ClientDTO(x))
-                .toList();
-    }
+    // @Override
+    // @Transactional(readOnly = true)
+    // public List<ClientDTO> findAll() {
+    //     List<Client> list = repository.findAll();
+    //     return list
+    //             .stream()
+    //             .map(x -> new ClientDTO(x))
+    //             .toList();
+    // }
 
     @Override
     @Transactional(readOnly = true)
@@ -86,5 +88,13 @@ public class ClientServiceImpl implements ClientService {
         entity.setCpf(dto.getCpf());
         entity.setIncome(dto.getIncome());
         entity.setName(dto.getName());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ClientDTO> findAllPaged(PageRequest pageRequest) {
+        Page<Client> page = repository.findAll(pageRequest);
+
+        return page.map(x -> new ClientDTO(x));
     }
 }
