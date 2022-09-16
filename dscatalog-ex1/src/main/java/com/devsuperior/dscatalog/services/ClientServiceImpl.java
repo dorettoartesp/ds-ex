@@ -3,6 +3,9 @@ package com.devsuperior.dscatalog.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +13,8 @@ import com.devsuperior.dscatalog.dtos.ClientDTO;
 import com.devsuperior.dscatalog.entities.Client;
 import com.devsuperior.dscatalog.repositories.ClientRepository;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
+
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -40,6 +45,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public ClientDTO insert(ClientDTO dto) {
         Client client = new Client(dto);
         client = repository.save(client);
@@ -47,9 +53,25 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public ClientDTO update(Long id, ClientDTO dto) {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            Client entity = repository.getReferenceById(id);
+            copyDtoToEntity(dto, entity);
+            entity = repository.save(entity);
+
+            return new ClientDTO(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(e.getMessage());
+        }
+    }
+
+    private void copyDtoToEntity(ClientDTO dto, Client entity) {
+        entity.setBirthDate(dto.getBirthDate());
+        entity.setChildren(dto.getChildren());
+        entity.setCpf(dto.getCpf());
+        entity.setIncome(dto.getIncome());
+        entity.setName(dto.getName());
     }
 
     @Override
