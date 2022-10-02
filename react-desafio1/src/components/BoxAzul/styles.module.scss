@@ -58,3 +58,20 @@
     text-align: center;
     max-width: 420px;
 }
+
+@media only screen and (min-width: 768px) {
+    .box-container {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 100%;
+        padding-left: 85px;
+    }
+
+    .image-container img {
+        width: 100%;
+        max-width: 455px;
+        height: auto;
+    }
+
+}

@@ -16,6 +16,14 @@
     width: 100%;
 }
 
+.image-container img {
+    width: 100%;
+    max-width: 333px;
+    height: auto;
+}
+
+
+
 .btn-catalogo {
     margin: 0px 1rem;
     background-color: #00285F;
@@ -61,4 +69,11 @@
         width: 100%;
         padding-left: 85px;
     }
+
+    .image-container img {
+        width: 100%;
+        max-width: 455px;
+        height: auto;
+    }
+
 }
