@@ -4,7 +4,7 @@ export const Card = () => {
   return (
     <div className="col-6 col-lg-4 mt-4">
       <div className={styles.box}>
-        <div className="box__img">
+        <div className={styles.box__img}>
           <img src="/src/assets/images/car-card.png" alt="" />
         </div>
         <div className={styles.box__title}>
