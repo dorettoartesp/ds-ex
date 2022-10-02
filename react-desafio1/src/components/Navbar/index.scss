@@ -1,0 +1,41 @@
+.navbar {
+    border: solid 1px red;
+    min-height: 70px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.right-menu {
+    display: flex;
+}
+
+.navbar-toggler {
+    border: 0;
+}
+
+.main-menu {
+    display: flex;
+    justify-content: end;
+    font-size: 18px;
+    width: 100%;
+}
+
+.main-menu a {
+    color: #00285F;
+    font-weight: normal;
+}
+
+.main-menu a:hover {
+    color: #fff;
+}
+
+.main-menu a.active {
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-item {
+    margin: 0px 1rem;
+}

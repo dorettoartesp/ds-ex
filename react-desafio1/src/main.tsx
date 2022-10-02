@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import { CarrosTopApp } from './CarrosTopApp'
-import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <CarrosTopApp />
+    <BrowserRouter >
+      <CarrosTopApp />
+    </BrowserRouter>
   </React.StrictMode>
 )
