@@ -1,17 +1,18 @@
-import './index.scss';
+import { NavLink } from 'react-router-dom';
+import styles from './styles.module.scss';
 export const BoxCinza = () => {
   return (
     <>
-        <div className="d-flex flex-row align w-full justify-content-center box-cinza">
-            <div className='image-container'>
-                <button className='btn-catalogo'>
-                    <span className="btn__text">
+        <div className={`d-flex flex-row align w-full justify-content-center ${styles["box-cinza"]}`}>
+            <div className={styles["box-container"]}>
+                <div className={styles["btn-catalogo"]}>
+                    <NavLink to='/catalogo' className={styles.btn__text}>
                         ver catálogo
-                    </span>
-                </button>
-            </div>
-            <div className='title'>
-               <span className=''></span>Comece agora a navegar
+                    </NavLink>
+                </div>
+                <div className={styles.title}>
+                    <span className=''></span>Comece agora a navegar
+                </div>
             </div>
         </div>
     </>

@@ -1,16 +1,18 @@
-import './index.scss';
+import styles from './styles.module.scss';
 export const BoxAzul = () => {
   return (
     <>
-        <div className="d-flex flex-column w-full box-azul">
-            <div className='image-container'>
+        <div className={`d-flex flex-column w-full ${styles['box-azul']}`}>
+            <div className={styles['image-container']}>
                 <img src="/src/assets/images/car-header.png" alt="" />
             </div>
-            <div className='title'>
+            <div className={styles.title}>
                 O carro perfeito para você
             </div>
-            <div className='subtitle'>
-                Conheça nossos carros e dê mais um passo na realização do seu sonho
+            <div className={styles.subtitle}>
+                <div className={styles.subtitle__text}>
+                    Conheça nossos carros e dê mais um passo na realização do seu sonho
+                </div>
             </div>
         </div>
     </>
