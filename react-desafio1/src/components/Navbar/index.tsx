@@ -1,7 +1,8 @@
+/// <reference types="vite-plugin-svgr/client" />
 import './index.scss'
 import 'bootstrap/js/src/collapse.js';
 
-import { ReactComponent as Hamburger } from '../../assets/images/hamburger.svg';
+import { ReactComponent as Hamburger } from '/src/assets/images/hamburger.svg';
 import { NavLink } from 'react-router-dom';
 
 export const Navbar = () => {
@@ -26,12 +27,12 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarToggle">
             <ul className="navbar-nav offset-md-2 main-menu">
               <li className="nav-item">
-                <NavLink className={`nav-link ${ navData => navData.isActive ? 'active' : ''}`} aria-current="page" to='/' end>
+                <NavLink className={`nav-link ${ ({isActive}) => isActive ? 'active' : ''}`} aria-current="page" to='/' end>
                   Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className={`nav-link ${ navData => navData.isActive ? 'active' : ''}`} aria-current="page" to='/catalogo'>
+                <NavLink className={`nav-link ${ ({isActive}) => isActive ? 'active' : ''}`} aria-current="page" to='/catalogo'>
                   Catálogo
                 </NavLink>
               </li>

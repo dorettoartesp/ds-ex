@@ -1,11 +1,12 @@
 import styles from './styles.module.scss'
+import Car from '/src/assets/images/car-card.png';
 
 export const Card = () => {
   return (
     <div className="col-6 col-lg-4 mt-4">
       <div className={styles.box}>
         <div className={styles.box__img}>
-          <img src="/src/assets/images/car-card.png" alt="" />
+          <img src={Car} alt="" />
         </div>
         <div className={styles.box__title}>
           Audi Supra TT
